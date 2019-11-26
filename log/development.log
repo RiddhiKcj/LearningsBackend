@@ -1,0 +1,1834 @@
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (122.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (120.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20191120073836)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "password_digest" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191120073836"]]
+  [1m[35m (120.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (5.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-11-20 07:40:07.389146"], ["updated_at", "2019-11-20 07:40:07.389146"]]
+  [1m[35m (105.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTodos (20191120074656)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "todos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_d94154aa95"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX "index_todos_on_user_id" ON "todos" ("user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191120074656"]]
+  [1m[35m (130.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/signin" for ::1 at 2019-11-20 16:35:48 +0530
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.0ms | Allocations: 191)
+
+
+  
+SyntaxError (/home/riddhi/Desktop/learnings/backend/app/models/user.rb:3: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+...   has_many :todos, dependent :destroy
+...                              ^):
+  
+app/models/user.rb:3: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+app/models/user.rb:3: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+app/controllers/signin_controller.rb:3:in `create'
+Started POST "/signin" for ::1 at 2019-11-20 16:38:29 +0530
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 67ms (ActiveRecord: 0.0ms | Allocations: 2206)
+
+
+  
+NameError (undefined local variable or method `has_secured_password' for #<Class:0x0000563bc3230d70>):
+  
+app/models/user.rb:3:in `<class:User>'
+app/models/user.rb:1:in `<top (required)>'
+app/controllers/signin_controller.rb:3:in `create'
+Started POST "/signin" for ::1 at 2019-11-20 16:40:53 +0530
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (19.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 96ms (ActiveRecord: 21.8ms | Allocations: 3701)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User):
+  
+app/controllers/signin_controller.rb:3:in `create'
+Started POST "/signup" for ::1 at 2019-11-20 16:44:11 +0530
+Processing by SignupController#create as HTML
+  Parameters: {"email"=>"ridds118@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "signup"=>{"email"=>"ridds118@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :signup[0m
+Completed 500 Internal Server Error in 1212ms (ActiveRecord: 2.0ms | Allocations: 4155)
+
+
+  
+NoMethodError (undefined method `name' for #<User:0x000055e09be5e5f8>):
+  
+app/controllers/signup_controller.rb:4:in `create'
+Started POST "/signup" for ::1 at 2019-11-20 16:51:50 +0530
+  [1m[35m (5.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SignupController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "signup"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :signup[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[36mUser Create (42.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "ridds119@gmail.com"], ["password_digest", "$2a$12$hwDJJYipt7hSMYH8WHUIM.0y6wL4MkseujJDInEo2vqFdbNesU24O"], ["created_at", "2019-11-20 11:21:52.321868"], ["updated_at", "2019-11-20 11:21:52.321868"]]
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[35m (65.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+Completed 500 Internal Server Error in 1360ms (ActiveRecord: 113.2ms | Allocations: 9894)
+
+
+  
+JWTSessions::Errors::Malconfigured (private_key is not specified):
+  
+app/controllers/signup_controller.rb:7:in `create'
+Started POST "/signup" for ::1 at 2019-11-20 16:54:33 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SignupController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "signup"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :signup[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "ridds119@gmail.com"], ["password_digest", "$2a$12$GJhALNa1ttqi31NTs5yldexxgmbkmzW9TjxuvAMTlt6zDKjSwFmUO"], ["created_at", "2019-11-20 11:24:35.202438"], ["updated_at", "2019-11-20 11:24:35.202438"]]
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[35m (87.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+Completed 500 Internal Server Error in 1304ms (ActiveRecord: 92.0ms | Allocations: 8892)
+
+
+  
+JWTSessions::Errors::Malconfigured (private_key is not specified):
+  
+app/controllers/signup_controller.rb:7:in `create'
+Started POST "/signup" for ::1 at 2019-11-20 16:56:50 +0530
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SignupController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "signup"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :signup[0m
+Completed 422 Unprocessable Entity in 1344ms (Views: 0.6ms | ActiveRecord: 3.1ms | Allocations: 10098)
+
+
+Started POST "/signup" for ::1 at 2019-11-20 16:57:13 +0530
+Processing by SignupController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "signup"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :signup[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "ridds119@gmail.com"], ["password_digest", "$2a$12$/6WK2SIKsphdnnesPZZyVuiilODtKvzoJaqAtn/uMH9R5/Rytw2dS"], ["created_at", "2019-11-20 11:27:14.878849"], ["updated_at", "2019-11-20 11:27:14.878849"]]
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[35m (84.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+Completed 200 OK in 1337ms (Views: 0.7ms | ActiveRecord: 85.3ms | Allocations: 7277)
+
+
+Started GET "/todos" for ::1 at 2019-11-20 17:13:15 +0530
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/todos"):
+  
+actionpack (6.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.0) lib/rack/cors.rb:100:in `call'
+railties (6.0.1) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/todos" for ::1 at 2019-11-20 17:14:48 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/todos"):
+  
+actionpack (6.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.0) lib/rack/cors.rb:100:in `call'
+railties (6.0.1) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/api/v1/todos" for ::1 at 2019-11-20 17:18:52 +0530
+  [1m[35m (4.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms | Allocations: 240)
+
+
+Started POST "/refresh" for ::1 at 2019-11-20 17:18:52 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 0.9ms | ActiveRecord: 0.0ms | Allocations: 218)
+
+
+Started GET "/" for ::1 at 2019-11-21 11:12:56 +0530
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant ApplcationController):
+  
+app/controllers/home_controller.rb:1:in `<top (required)>'
+Started GET "/favicon.ico" for ::1 at 2019-11-21 11:12:57 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.0) lib/rack/cors.rb:100:in `call'
+railties (6.0.1) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/signin" for ::1 at 2019-11-21 11:16:41 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (18.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 74ms (ActiveRecord: 18.9ms | Allocations: 3787)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User):
+  
+app/controllers/signin_controller.rb:3:in `create'
+Started GET "/signin" for ::1 at 2019-11-21 11:41:46 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/signin"):
+  
+actionpack (6.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.0) lib/rack/cors.rb:100:in `call'
+railties (6.0.1) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/signin" for ::1 at 2019-11-21 11:46:27 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (16.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 19ms (ActiveRecord: 16.9ms | Allocations: 652)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User):
+  
+app/controllers/signin_controller.rb:3:in `create'
+Started POST "/signin" for ::1 at 2019-11-21 11:47:12 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (11.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 15ms (ActiveRecord: 11.6ms | Allocations: 649)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User):
+  
+app/controllers/signin_controller.rb:3:in `create'
+Started POST "/signup" for ::1 at 2019-11-21 11:56:53 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SignupController#create as HTML
+  Parameters: {"code"=>"4/tQHBgIVZ4Owc661teEVeEjJJ7p0f5FZKNcg91Aohrl7fjiJrw1JgNIJ9DT6HDyYdCAF7c1tLamTfXOA7nHF3f5I", "redirect_uri"=>"postmessage", "signup"=>{"code"=>"4/tQHBgIVZ4Owc661teEVeEjJJ7p0f5FZKNcg91Aohrl7fjiJrw1JgNIJ9DT6HDyYdCAF7c1tLamTfXOA7nHF3f5I", "redirect_uri"=>"postmessage"}}
+[31mUnpermitted parameters: :code, :redirect_uri, :signup[0m
+Completed 422 Unprocessable Entity in 189ms (Views: 18.6ms | ActiveRecord: 0.7ms | Allocations: 6117)
+
+
+Started POST "/signup" for ::1 at 2019-11-21 12:49:03 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SignupController#create as HTML
+  Parameters: {"code"=>"4/tQEMigFX_0PPV1nss3cOJ0qV274OjHCInNsgkP_VLYxHgoplWN6jhca1gMmAVVPSvk5moZsk4tI77aXkK_utIhk", "redirect_uri"=>"postmessage", "signup"=>{"code"=>"4/tQEMigFX_0PPV1nss3cOJ0qV274OjHCInNsgkP_VLYxHgoplWN6jhca1gMmAVVPSvk5moZsk4tI77aXkK_utIhk", "redirect_uri"=>"postmessage"}}
+[31mUnpermitted parameters: :code, :redirect_uri, :signup[0m
+Completed 422 Unprocessable Entity in 4ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 1319)
+
+
+Started POST "/signin" for ::1 at 2019-11-21 16:59:31 +0530
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 34ms (ActiveRecord: 1.1ms | Allocations: 3701)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User):
+  
+app/controllers/signin_controller.rb:3:in `create'
+Started POST "/signin" for ::1 at 2019-11-21 17:01:35 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 3ms (ActiveRecord: 0.2ms | Allocations: 684)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User):
+  
+app/controllers/signin_controller.rb:3:in `create'
+Started POST "/signin" for ::1 at 2019-11-21 17:02:07 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms | Allocations: 649)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User):
+  
+app/controllers/signin_controller.rb:3:in `create'
+Started POST "/signin" for ::1 at 2019-11-21 17:02:30 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms | Allocations: 650)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User):
+  
+app/controllers/signin_controller.rb:3:in `create'
+Started POST "/signin" for ::1 at 2019-11-21 17:09:04 +0530
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms | Allocations: 661)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User):
+  
+app/controllers/signin_controller.rb:3:in `create'
+Started POST "/signin" for ::1 at 2019-11-21 17:15:06 +0530
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.3ms | Allocations: 651)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User):
+  
+app/controllers/signin_controller.rb:3:in `create'
+Started POST "/signin" for ::1 at 2019-11-21 17:20:59 +0530
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 9ms (ActiveRecord: 0.5ms | Allocations: 3701)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User):
+  
+app/controllers/signin_controller.rb:3:in `create'
+Started POST "/signin" for ::1 at 2019-11-21 17:30:09 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 5ms (ActiveRecord: 0.2ms | Allocations: 2406)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User):
+  
+app/controllers/signin_controller.rb:3:in `create'
+Started POST "/signin" for ::1 at 2019-11-21 17:32:11 +0530
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 7ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 2550)
+
+
+Started POST "/signin" for ::1 at 2019-11-22 10:33:33 +0530
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 36ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 3741)
+
+
+Started POST "/signin" for ::1 at 2019-11-22 10:36:28 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 663)
+
+
+Started POST "/signin" for ::1 at 2019-11-22 10:37:51 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"", "password"=>"[FILTERED]", "signin"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 4ms (Views: 0.3ms | ActiveRecord: 1.7ms | Allocations: 663)
+
+
+Started POST "/signin" for ::1 at 2019-11-22 10:38:26 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 345ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 4108)
+
+
+Started POST "/signin" for ::1 at 2019-11-22 10:50:36 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ssssss", "password"=>"[FILTERED]", "signin"=>{"email"=>"ssssss", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ssssss"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 6ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 2454)
+
+
+Started POST "/oauth/gauth" for ::1 at 2019-11-25 12:21:19 +0530
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Oauth::GoogleauthController#create as HTML
+  Parameters: {"idtoken"=>"", "googleauth"=>{"idtoken"=>""}}
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+400
+#<HTTP::Message:0x000055f63ba117b0 @http_header=#<HTTP::Message::Headers:0x000055f63ba11788 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x2afb1dd09858 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=400, @reason_phrase="Bad Request", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Pragma", "no-cache"], ["Date", "Mon, 25 Nov 2019 06:51:21 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x000055f63b9e0db8>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x000055f63ba116e8 @body="{\n  \"error_description\": \"Either access_token, id_token, or token_handle required\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Caught error Invalid request
+Error - #<Google::Apis::ClientError: Invalid request status_code: 400 header: #<HTTP::Message::Headers:0x00007fa90d6e3ad0 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x2afb1dd09858 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=400, @reason_phrase="Bad Request", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Pragma", "no-cache"], ["Date", "Mon, 25 Nov 2019 06:51:21 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false> body: "{\n  \"error_description\": \"Either access_token, id_token, or token_handle required\"\n}\n">
+
+Completed 500 Internal Server Error in 528ms (ActiveRecord: 0.0ms | Allocations: 2222)
+
+
+  
+Google::Apis::ClientError (Invalid request):
+  
+app/controllers/oauth/googleauth_controller.rb:8:in `create'
+Started POST "/oauth/gauth" for ::1 at 2019-11-25 12:28:13 +0530
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Oauth::GoogleauthController#create as HTML
+  Parameters: {"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRiMDJhYjMwZTBiNzViOGVjZDRmODE2YmI5ZTE5NzhmNjI4NDk4OTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6InAxRFBJajE0R21FV0c2SWotYVlOZ3ciLCJpYXQiOjE1NzQ2NjUwOTEsImV4cCI6MTU3NDY2ODY5MSwianRpIjoiMTU4YTdhNjRiYTZiOTcyZjFmNDgwZDc4MDIyMjQyZDZkNjIxZTI1ZiJ9.Lb0zXgLr1GTHrR_H5KzPksKgFSwo8eB0XYk-0rivkn-iEMt7tRyGsQflEKquOl1zZAKwJSfui5zWxsNJgRGhmZrlUNj4joY9bH7GfhcK1UXjTwKU49O3xYbU_h4P1nIPfbraTSK8XvdRop4pJEeBUcdpFuU24r-_YeKdqvlxHD4Z9sT6Xkz_z-_v1YQELXk9uPPfzphTMrWO7kAGfC8A6se1ppUmMso27bnPeTiqBeLh7Uj6oPGiVnxeHqFE7K-kju0vvClgiO9nGyE2YWAUZJ2ootbF_w7JZXMScHqLrNMHCvF6GON7L_AliuHk7nMdHwA5_vOT6HqOopB40BWxOg", "accesstoken"=>"ya29.ImCyB0az1LXQEwWIVibrkjFZRlDZxOlfeKewUi69j97ysF6OtzLz4dA0JQkhcrpjePlYo3CGFk96ZjvZOZlkymIEa1CwAA9yvMoK6dwGP427eyl8pw6pOxl-Wk_DqsFpoh4", "googleauth"=>{"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRiMDJhYjMwZTBiNzViOGVjZDRmODE2YmI5ZTE5NzhmNjI4NDk4OTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6InAxRFBJajE0R21FV0c2SWotYVlOZ3ciLCJpYXQiOjE1NzQ2NjUwOTEsImV4cCI6MTU3NDY2ODY5MSwianRpIjoiMTU4YTdhNjRiYTZiOTcyZjFmNDgwZDc4MDIyMjQyZDZkNjIxZTI1ZiJ9.Lb0zXgLr1GTHrR_H5KzPksKgFSwo8eB0XYk-0rivkn-iEMt7tRyGsQflEKquOl1zZAKwJSfui5zWxsNJgRGhmZrlUNj4joY9bH7GfhcK1UXjTwKU49O3xYbU_h4P1nIPfbraTSK8XvdRop4pJEeBUcdpFuU24r-_YeKdqvlxHD4Z9sT6Xkz_z-_v1YQELXk9uPPfzphTMrWO7kAGfC8A6se1ppUmMso27bnPeTiqBeLh7Uj6oPGiVnxeHqFE7K-kju0vvClgiO9nGyE2YWAUZJ2ootbF_w7JZXMScHqLrNMHCvF6GON7L_AliuHk7nMdHwA5_vOT6HqOopB40BWxOg", "accesstoken"=>"ya29.ImCyB0az1LXQEwWIVibrkjFZRlDZxOlfeKewUi69j97ysF6OtzLz4dA0JQkhcrpjePlYo3CGFk96ZjvZOZlkymIEa1CwAA9yvMoK6dwGP427eyl8pw6pOxl-Wk_DqsFpoh4"}}
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+200
+#<HTTP::Message:0x00007f16c5587bf8 @http_header=#<HTTP::Message::Headers:0x00007f16c5587bd0 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x2b26991ca404 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=200, @reason_phrase="OK", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Date", "Mon, 25 Nov 2019 06:58:15 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Pragma", "no-cache"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x0000564d323bff08>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x00007f16c5587b58 @body="{\n  \"issued_to\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"audience\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"user_id\": \"103346968447678112048\",\n  \"scope\": \"openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile\",\n  \"expires_in\": 3596,\n  \"email\": \"ridds509@gmail.com\",\n  \"verified_email\": true,\n  \"access_type\": \"online\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Success - #<Google::Apis::Oauth2V2::Tokeninfo:0x0000564d323be9a0
+ @access_type="online",
+ @audience=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @email="ridds509@gmail.com",
+ @expires_in=3596,
+ @issued_to=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @scope=
+  "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+ @user_id="103346968447678112048",
+ @verified_email=true>
+
+Completed 500 Internal Server Error in 533ms (ActiveRecord: 0.0ms | Allocations: 3815)
+
+
+  
+NoMethodError (undefined method `pry' for #<Binding:0x00007f16c5728c78>):
+  
+app/controllers/oauth/googleauth_controller.rb:10:in `create'
+Started POST "/oauth/gauth" for ::1 at 2019-11-25 12:35:42 +0530
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Oauth::GoogleauthController#create as HTML
+  Parameters: {"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRiMDJhYjMwZTBiNzViOGVjZDRmODE2YmI5ZTE5NzhmNjI4NDk4OTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IktoQ0ZKeGdwVTY4cXIwZTBUNHYyUlEiLCJpYXQiOjE1NzQ2NjU1NDAsImV4cCI6MTU3NDY2OTE0MCwianRpIjoiMWNjNTVmYTcxOWZjYzgyMmFkYTBhYzdkOTQ1MGU4ZmVmZDA4NDYxNiJ9.BW1OAEEUBdvH_HWvF00dush8ffCeLkpFj6iPfzVy3Uyt-o9qSds4eQiMmpk2NjcNny78HzOnlmxY-8kt510xwESFjHfUpGYvEwXaVsFsGgocxwU2uKRYTZeoTyc5d8BKUzkFH_9BIiFWcthfG-twG9c4798mjfkcmcpz0t0_uPJXdR0xqfelTEOi7YCZKjWuXE3bMMQUnm1s5_CoM8OliMgTELNi5xkyrFxygQhPxctcK0CjWT8VD4911AJ2PSKvyvs_UvY3rcQDAOsAjioButMlADzfXa1Q5hWQDxc73yxSczPMIZSgGt34TCnMYIj7kzssb6hxAeDGCeBaFd5jhQ", "accesstoken"=>"ya29.ImCyBzCZH1Jk173XVO_prhrcc3Ydyyw_SP8TJod8ybR5SADYiBvYI3-lWEsjWyrM23pevuqbR5_vWzoXWtShTjqYkPH1-i9_FN0Saw53qyNcvjm45mq8KTQ27J6gFoDPiQsparity", "googleauth"=>{"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRiMDJhYjMwZTBiNzViOGVjZDRmODE2YmI5ZTE5NzhmNjI4NDk4OTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IktoQ0ZKeGdwVTY4cXIwZTBUNHYyUlEiLCJpYXQiOjE1NzQ2NjU1NDAsImV4cCI6MTU3NDY2OTE0MCwianRpIjoiMWNjNTVmYTcxOWZjYzgyMmFkYTBhYzdkOTQ1MGU4ZmVmZDA4NDYxNiJ9.BW1OAEEUBdvH_HWvF00dush8ffCeLkpFj6iPfzVy3Uyt-o9qSds4eQiMmpk2NjcNny78HzOnlmxY-8kt510xwESFjHfUpGYvEwXaVsFsGgocxwU2uKRYTZeoTyc5d8BKUzkFH_9BIiFWcthfG-twG9c4798mjfkcmcpz0t0_uPJXdR0xqfelTEOi7YCZKjWuXE3bMMQUnm1s5_CoM8OliMgTELNi5xkyrFxygQhPxctcK0CjWT8VD4911AJ2PSKvyvs_UvY3rcQDAOsAjioButMlADzfXa1Q5hWQDxc73yxSczPMIZSgGt34TCnMYIj7kzssb6hxAeDGCeBaFd5jhQ", "accesstoken"=>"ya29.ImCyBzCZH1Jk173XVO_prhrcc3Ydyyw_SP8TJod8ybR5SADYiBvYI3-lWEsjWyrM23pevuqbR5_vWzoXWtShTjqYkPH1-i9_FN0Saw53qyNcvjm45mq8KTQ27J6gFoDPiQsparity"}}
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+400
+#<HTTP::Message:0x00007f16c5bfb5e8 @http_header=#<HTTP::Message::Headers:0x00007f16c5bfb5c0 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x3f8b62dfdf18 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=400, @reason_phrase="Bad Request", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Pragma", "no-cache"], ["Date", "Mon, 25 Nov 2019 07:05:42 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x00007f16c5bd97b8>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x00007f16c5bfb548 @body="{\n  \"error_description\": \"Invalid Value\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Caught error Invalid request
+Error - #<Google::Apis::ClientError: Invalid request status_code: 400 header: #<HTTP::Message::Headers:0x00007f16c5bd8f20 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x3f8b62dfdf18 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=400, @reason_phrase="Bad Request", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Pragma", "no-cache"], ["Date", "Mon, 25 Nov 2019 07:05:42 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false> body: "{\n  \"error_description\": \"Invalid Value\"\n}\n">
+
+Completed 500 Internal Server Error in 601ms (ActiveRecord: 0.0ms | Allocations: 2412)
+
+
+  
+Google::Apis::ClientError (Invalid request):
+  
+app/controllers/oauth/googleauth_controller.rb:8:in `create'
+Started POST "/oauth/gauth" for ::1 at 2019-11-25 12:37:10 +0530
+Processing by Oauth::GoogleauthController#create as HTML
+  Parameters: {"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRiMDJhYjMwZTBiNzViOGVjZDRmODE2YmI5ZTE5NzhmNjI4NDk4OTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Iml4aU5KVGdFcXBwemFnZXNVbkhqalEiLCJpYXQiOjE1NzQ2NjU2MjgsImV4cCI6MTU3NDY2OTIyOCwianRpIjoiMmY2ODllMDBmMGIxMzllNDQ3NjNiZWJiMDc2YTg4NGViZmQwNDRiNCJ9.eFYVJSvXAgHfP3IAHQyr8Fb4hebCkHLq-RFIbzsAs88A-A6PIH8vEtxoRPEmrmyK25-kzQwGjbfjxCfwjvZ7b81eLyA4-KKajMw4NSoA3DUtJtP9Jf80YZ9MgOMr9S2QMZusT2T1SWGL1F_XA6IU-4xcpPNeJQeSmYKbl7JO43nFvxAKxskMflrWKbLSoSxIh18_RiMm9El9JLeumSpZywZ3WqQlHwipt7Z4CrE898PGrjAagTZ_9pDVUAzBtj5bIsxz01evtA1sPQFIndMPihEZeUqM-UoSa1oEnyXj_KSNe7XpqHtHoF6q15xpuyJnD6anL0pE2jboC1ezNtrlEw", "accesstoken"=>"ya29.ImCyB1rNvDlf-5l_-aYDSKtomJ8WCG4HOR9JHVWlwclcAX9a8TNNMy9TW0bn32_xB9Dzop9CmEQsrV3wDIkgVNhYkL6crZMklp8quWWRT50FjnjizX3TSXstMMqWwXWWs6Aparity", "googleauth"=>{"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRiMDJhYjMwZTBiNzViOGVjZDRmODE2YmI5ZTE5NzhmNjI4NDk4OTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Iml4aU5KVGdFcXBwemFnZXNVbkhqalEiLCJpYXQiOjE1NzQ2NjU2MjgsImV4cCI6MTU3NDY2OTIyOCwianRpIjoiMmY2ODllMDBmMGIxMzllNDQ3NjNiZWJiMDc2YTg4NGViZmQwNDRiNCJ9.eFYVJSvXAgHfP3IAHQyr8Fb4hebCkHLq-RFIbzsAs88A-A6PIH8vEtxoRPEmrmyK25-kzQwGjbfjxCfwjvZ7b81eLyA4-KKajMw4NSoA3DUtJtP9Jf80YZ9MgOMr9S2QMZusT2T1SWGL1F_XA6IU-4xcpPNeJQeSmYKbl7JO43nFvxAKxskMflrWKbLSoSxIh18_RiMm9El9JLeumSpZywZ3WqQlHwipt7Z4CrE898PGrjAagTZ_9pDVUAzBtj5bIsxz01evtA1sPQFIndMPihEZeUqM-UoSa1oEnyXj_KSNe7XpqHtHoF6q15xpuyJnD6anL0pE2jboC1ezNtrlEw", "accesstoken"=>"ya29.ImCyB1rNvDlf-5l_-aYDSKtomJ8WCG4HOR9JHVWlwclcAX9a8TNNMy9TW0bn32_xB9Dzop9CmEQsrV3wDIkgVNhYkL6crZMklp8quWWRT50FjnjizX3TSXstMMqWwXWWs6Aparity"}}
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+400
+#<HTTP::Message:0x00007f16c5997d38 @http_header=#<HTTP::Message::Headers:0x00007f16c5997d10 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x3f8b62cce2f0 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=400, @reason_phrase="Bad Request", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Pragma", "no-cache"], ["Date", "Mon, 25 Nov 2019 07:07:11 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x00007f16c597d5f0>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x00007f16c5997c98 @body="{\n  \"error_description\": \"Invalid Value\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Caught error Invalid request
+Error - #<Google::Apis::ClientError: Invalid request status_code: 400 header: #<HTTP::Message::Headers:0x00007f16c597cd58 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x3f8b62cce2f0 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=400, @reason_phrase="Bad Request", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Pragma", "no-cache"], ["Date", "Mon, 25 Nov 2019 07:07:11 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false> body: "{\n  \"error_description\": \"Invalid Value\"\n}\n">
+
+Completed 500 Internal Server Error in 555ms (ActiveRecord: 0.0ms | Allocations: 2062)
+
+
+  
+Google::Apis::ClientError (Invalid request):
+  
+app/controllers/oauth/googleauth_controller.rb:8:in `create'
+Started POST "/oauth/gauth" for ::1 at 2019-11-25 12:39:08 +0530
+Processing by Oauth::GoogleauthController#create as HTML
+  Parameters: {"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRiMDJhYjMwZTBiNzViOGVjZDRmODE2YmI5ZTE5NzhmNjI4NDk4OTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Ik16a0VMVkl0b3YzUGcwc09GTkNuQ2ciLCJpYXQiOjE1NzQ2NjU3NDYsImV4cCI6MTU3NDY2OTM0NiwianRpIjoiYzYzNTA1NDgxODc4ZWVjOWU4ODM5Y2E0ODgyZTY0Y2NjNjIyMTM2MCJ9.W3RC3kx6K9-Mr2KmgZtyZto8Maqs-WoHDwrgtr8sAuXmJr_QMGohCye4qU1-FqQpysUGcGsdpcP-VZdrSzrcJWfnfpPMj5nQKOoiHb-sFcoxtbsNT_Qu4xL1sTCtfyuEjfUToFAm4o1WqjVu5m7ehZ26MpWN7hfR4Uy_eoYKvErEXr7G5w8CgZ4LZGot9bBC6XqbzyANqqRbWDVenSg_ZRlfQmpGvYvKU8VOCkRX6sPo_X_BFSUoPv06TmSLYJFRdm3TXNpiG188rH-EikjK4nOu50GN5MXehDXBgjVMu0w1j2xPpuyA0lHIfWUSOT63oLHAB7gAweZUeNiulGHFbQ", "accesstoken"=>"ya29.ImCyBxs_GUdjatnBYlVQ68m8FXTIWALlpvODLdM8IGWWSikq2WLSLYrM2CB4x8niSdJj7rXL-pMaHzvDdyEOLN4GlBX4Fg5rO-cNhP8PqNCozd3Qu5D5eORqmIbOQYzv7gw", "googleauth"=>{"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRiMDJhYjMwZTBiNzViOGVjZDRmODE2YmI5ZTE5NzhmNjI4NDk4OTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Ik16a0VMVkl0b3YzUGcwc09GTkNuQ2ciLCJpYXQiOjE1NzQ2NjU3NDYsImV4cCI6MTU3NDY2OTM0NiwianRpIjoiYzYzNTA1NDgxODc4ZWVjOWU4ODM5Y2E0ODgyZTY0Y2NjNjIyMTM2MCJ9.W3RC3kx6K9-Mr2KmgZtyZto8Maqs-WoHDwrgtr8sAuXmJr_QMGohCye4qU1-FqQpysUGcGsdpcP-VZdrSzrcJWfnfpPMj5nQKOoiHb-sFcoxtbsNT_Qu4xL1sTCtfyuEjfUToFAm4o1WqjVu5m7ehZ26MpWN7hfR4Uy_eoYKvErEXr7G5w8CgZ4LZGot9bBC6XqbzyANqqRbWDVenSg_ZRlfQmpGvYvKU8VOCkRX6sPo_X_BFSUoPv06TmSLYJFRdm3TXNpiG188rH-EikjK4nOu50GN5MXehDXBgjVMu0w1j2xPpuyA0lHIfWUSOT63oLHAB7gAweZUeNiulGHFbQ", "accesstoken"=>"ya29.ImCyBxs_GUdjatnBYlVQ68m8FXTIWALlpvODLdM8IGWWSikq2WLSLYrM2CB4x8niSdJj7rXL-pMaHzvDdyEOLN4GlBX4Fg5rO-cNhP8PqNCozd3Qu5D5eORqmIbOQYzv7gw"}}
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+200
+#<HTTP::Message:0x00007f16c5745738 @http_header=#<HTTP::Message::Headers:0x00007f16c5745710 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x3f8b62ba2fc0 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=200, @reason_phrase="OK", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Pragma", "no-cache"], ["Date", "Mon, 25 Nov 2019 07:09:09 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x00007f16c5725a00>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x00007f16c5745698 @body="{\n  \"issued_to\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"audience\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"user_id\": \"103346968447678112048\",\n  \"scope\": \"openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile\",\n  \"expires_in\": 3597,\n  \"email\": \"ridds509@gmail.com\",\n  \"verified_email\": true,\n  \"access_type\": \"online\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Success - #<Google::Apis::Oauth2V2::Tokeninfo:0x00007f16c5724fd8
+ @access_type="online",
+ @audience=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @email="ridds509@gmail.com",
+ @expires_in=3597,
+ @issued_to=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @scope=
+  "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+ @user_id="103346968447678112048",
+ @verified_email=true>
+
+Completed 500 Internal Server Error in 598ms (ActiveRecord: 0.0ms | Allocations: 2549)
+
+
+  
+NoMethodError (undefined method `pry' for #<Binding:0x00007f16c56ac7b8>):
+  
+app/controllers/oauth/googleauth_controller.rb:10:in `create'
+Started POST "/oauth/gauth" for ::1 at 2019-11-25 12:51:05 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Oauth::GoogleauthController#create as HTML
+  Parameters: {"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRiMDJhYjMwZTBiNzViOGVjZDRmODE2YmI5ZTE5NzhmNjI4NDk4OTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6InAyTnphZzNDOUlFU2psNmY2RnlyNEEiLCJpYXQiOjE1NzQ2NjY0NjMsImV4cCI6MTU3NDY3MDA2MywianRpIjoiYWY3YWVjZjVlZThkMjliYjA5ZTE1ZWM0OGE2ZGQ4NmI0YmE5MTNlOSJ9.ofiRKFZEQr_W7lBds8jf-VE6JCa2K-FRyyPYOA5vXkKS9f3mHK_E4sIdPAVMgqF2qdiq0H-GKSZanfmfaBzVtoTo89TBV8IXHNcu09HZyYB7xbsyQaCIxpAxoQgBNDxgkJhptZ8VGeEOTKk_8sCWyFvV0NicAiKQtnqg-CtySmvY5E_7tHExDD-xONLgCdt9isXmZe03IAGE87izvoDGnMCq4Ya6lu1iCRnCxoVXXFhKo2CrKFSOHEiJTOwvEZYAYir4ILF5MIiAB14_30eFqt78bywdjDb-rlg08qGtVvFbd-79GWm7YL4RH-QAOoTlLSpQmtQ6QDRbqyEGABYHJw", "accesstoken"=>"ya29.ImCyBwUmKAxiBcfaD46YnSVyeKWPNhH8FotIRPCOnOYKg9sBr1b2OGjEqq93J-DSzxskaEfHJHCspO2GZ0uqYWQFvCHtV57wbxDEfE0u5sE12mD9VpYYGEh1Q3E8QWe0qm0", "googleauth"=>{"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRiMDJhYjMwZTBiNzViOGVjZDRmODE2YmI5ZTE5NzhmNjI4NDk4OTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6InAyTnphZzNDOUlFU2psNmY2RnlyNEEiLCJpYXQiOjE1NzQ2NjY0NjMsImV4cCI6MTU3NDY3MDA2MywianRpIjoiYWY3YWVjZjVlZThkMjliYjA5ZTE1ZWM0OGE2ZGQ4NmI0YmE5MTNlOSJ9.ofiRKFZEQr_W7lBds8jf-VE6JCa2K-FRyyPYOA5vXkKS9f3mHK_E4sIdPAVMgqF2qdiq0H-GKSZanfmfaBzVtoTo89TBV8IXHNcu09HZyYB7xbsyQaCIxpAxoQgBNDxgkJhptZ8VGeEOTKk_8sCWyFvV0NicAiKQtnqg-CtySmvY5E_7tHExDD-xONLgCdt9isXmZe03IAGE87izvoDGnMCq4Ya6lu1iCRnCxoVXXFhKo2CrKFSOHEiJTOwvEZYAYir4ILF5MIiAB14_30eFqt78bywdjDb-rlg08qGtVvFbd-79GWm7YL4RH-QAOoTlLSpQmtQ6QDRbqyEGABYHJw", "accesstoken"=>"ya29.ImCyBwUmKAxiBcfaD46YnSVyeKWPNhH8FotIRPCOnOYKg9sBr1b2OGjEqq93J-DSzxskaEfHJHCspO2GZ0uqYWQFvCHtV57wbxDEfE0u5sE12mD9VpYYGEh1Q3E8QWe0qm0"}}
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+200
+#<HTTP::Message:0x0000564d32537868 @http_header=#<HTTP::Message::Headers:0x0000564d32537840 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x2b26992a4a8c URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=200, @reason_phrase="OK", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Pragma", "no-cache"], ["Date", "Mon, 25 Nov 2019 07:21:07 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x0000564d3249ce08>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x0000564d325377c8 @body="{\n  \"issued_to\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"audience\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"user_id\": \"103346968447678112048\",\n  \"scope\": \"openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile\",\n  \"expires_in\": 3596,\n  \"email\": \"ridds509@gmail.com\",\n  \"verified_email\": true,\n  \"access_type\": \"online\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Success - #<Google::Apis::Oauth2V2::Tokeninfo:0x0000564d32491490
+ @access_type="online",
+ @audience=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @email="ridds509@gmail.com",
+ @expires_in=3596,
+ @issued_to=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @scope=
+  "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+ @user_id="103346968447678112048",
+ @verified_email=true>
+
+  [1m[36mUser Load (14.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/oauth/googleauth_controller.rb:11:in `create'
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/oauth/googleauth_controller.rb:14:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/oauth/googleauth_controller.rb:14:in `create'
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/oauth/googleauth_controller.rb:14:in `create'
+Completed 200 OK in 2405ms (Views: 0.9ms | ActiveRecord: 18.4ms | Allocations: 14971)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 12:51:08 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 191)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 12:51:08 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 195)
+
+
+Started POST "/oauth/gauth" for ::1 at 2019-11-25 12:52:37 +0530
+Processing by Oauth::GoogleauthController#create as HTML
+  Parameters: {"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRiMDJhYjMwZTBiNzViOGVjZDRmODE2YmI5ZTE5NzhmNjI4NDk4OTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6InNsV3gxamwwTjN0TlptX0h5VEZnTHciLCJpYXQiOjE1NzQ2NjY1NTUsImV4cCI6MTU3NDY3MDE1NSwianRpIjoiMDIyMjZjZmY4MzMyNThlMTMwNGM3ZjAxMGJkM2FlZmNhYWU0ZmRkZCJ9.ARUo9fVqy7BQXmUUMZDyEGj0C-Q6i_1j--uFaNyqUEu5K553WbFkJ-BUzlfBWdl9geeWo5pFr1dp5gc76YQNfzruXp1MUe4MuOobrj4QkrfC5vmJdNzulODO5Q0SJ0QU2w39EvsPbgR3knhS-e-ieLHUhA8AFAAN5lvN4elKSfFJwQ4Ss4I7ZDQNJQ3A8qKgcFcu03LKximYp376vXN0dHSPV2ZXqAqS6AF9HKoM0PjWM8R5TF1qavthmK9oNoaQi1sgwkDyrj8bTsLPpqEOHp8N3osjVhkrnzH04JpSBImp8cfLJYe2HVUvxgeKNOG1A08ovGX8pRS_UlyhaH01Eg", "accesstoken"=>"ya29.ImCyB06Y2IGqZ99XoQywwDO6PWU7EUUAiZB2wVHLHkYLjPYzFZGGBu08ohj93HntfCMr9ekQzoouctrz0O-KSDRHdJsjG9dFH1pgVtxWsK56cfTJZYa6C0ePvuDdyrOXmj4", "googleauth"=>{"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRiMDJhYjMwZTBiNzViOGVjZDRmODE2YmI5ZTE5NzhmNjI4NDk4OTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6InNsV3gxamwwTjN0TlptX0h5VEZnTHciLCJpYXQiOjE1NzQ2NjY1NTUsImV4cCI6MTU3NDY3MDE1NSwianRpIjoiMDIyMjZjZmY4MzMyNThlMTMwNGM3ZjAxMGJkM2FlZmNhYWU0ZmRkZCJ9.ARUo9fVqy7BQXmUUMZDyEGj0C-Q6i_1j--uFaNyqUEu5K553WbFkJ-BUzlfBWdl9geeWo5pFr1dp5gc76YQNfzruXp1MUe4MuOobrj4QkrfC5vmJdNzulODO5Q0SJ0QU2w39EvsPbgR3knhS-e-ieLHUhA8AFAAN5lvN4elKSfFJwQ4Ss4I7ZDQNJQ3A8qKgcFcu03LKximYp376vXN0dHSPV2ZXqAqS6AF9HKoM0PjWM8R5TF1qavthmK9oNoaQi1sgwkDyrj8bTsLPpqEOHp8N3osjVhkrnzH04JpSBImp8cfLJYe2HVUvxgeKNOG1A08ovGX8pRS_UlyhaH01Eg", "accesstoken"=>"ya29.ImCyB06Y2IGqZ99XoQywwDO6PWU7EUUAiZB2wVHLHkYLjPYzFZGGBu08ohj93HntfCMr9ekQzoouctrz0O-KSDRHdJsjG9dFH1pgVtxWsK56cfTJZYa6C0ePvuDdyrOXmj4"}}
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+200
+#<HTTP::Message:0x0000564d31d34148 @http_header=#<HTTP::Message::Headers:0x0000564d31d34120 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x2b2698ea67c8 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=200, @reason_phrase="OK", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Pragma", "no-cache"], ["Date", "Mon, 25 Nov 2019 07:22:38 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x0000564d307e00a8>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x0000564d31d33ef0 @body="{\n  \"issued_to\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"audience\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"user_id\": \"103346968447678112048\",\n  \"scope\": \"openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile\",\n  \"expires_in\": 3597,\n  \"email\": \"ridds509@gmail.com\",\n  \"verified_email\": true,\n  \"access_type\": \"online\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Success - #<Google::Apis::Oauth2V2::Tokeninfo:0x0000564d307a2ac8
+ @access_type="online",
+ @audience=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @email="ridds509@gmail.com",
+ @expires_in=3597,
+ @issued_to=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @scope=
+  "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+ @user_id="103346968447678112048",
+ @verified_email=true>
+
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/oauth/googleauth_controller.rb:11:in `create'
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/oauth/googleauth_controller.rb:14:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/oauth/googleauth_controller.rb:14:in `create'
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/oauth/googleauth_controller.rb:14:in `create'
+Completed 200 OK in 1682ms (Views: 1.4ms | ActiveRecord: 1.7ms | Allocations: 6515)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 12:52:39 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 140)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 12:52:39 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 160)
+
+
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+Started POST "/signin" for ::1 at 2019-11-25 12:54:49 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 1167ms (Views: 0.5ms | ActiveRecord: 0.6ms | Allocations: 728)
+
+
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Destroy (18.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 3]]
+  [1m[35m (71.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Destroy (0.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 2]]
+  [1m[35m (133.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+Started POST "/signin" for ::1 at 2019-11-25 12:58:14 +0530
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 1197ms (Views: 0.6ms | ActiveRecord: 4.1ms | Allocations: 5932)
+
+
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Destroy (1.9ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 1]]
+  [1m[35m (104.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+Started POST "/signup" for ::1 at 2019-11-25 12:58:59 +0530
+Processing by SignupController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "signup"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :signup[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[36mUser Create (16.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "ridds119@gmail.com"], ["password_digest", "$2a$12$JS3B8iMvoo60OITeaKY5y.WN2SvIvo7qyJC0CSlS5S1OkCyO5h11W"], ["created_at", "2019-11-25 07:29:00.405720"], ["updated_at", "2019-11-25 07:29:00.405720"]]
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[35m (75.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+Completed 200 OK in 1300ms (Views: 0.5ms | ActiveRecord: 93.2ms | Allocations: 5412)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 12:59:00 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 178)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 12:59:00 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 195)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 12:59:33 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1198ms (Views: 0.5ms | ActiveRecord: 0.7ms | Allocations: 1067)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 12:59:34 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 140)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 12:59:34 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 160)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 13:08:15 +0530
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1283ms (Views: 0.7ms | ActiveRecord: 5.5ms | Allocations: 7914)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 13:08:17 +0530
+  
+LoadError (cannot load such file -- pry):
+  
+app/controllers/api/v1/todos_controller.rb:4:in `<class:TodosController>'
+app/controllers/api/v1/todos_controller.rb:3:in `<module:V1>'
+app/controllers/api/v1/todos_controller.rb:2:in `<module:Api>'
+app/controllers/api/v1/todos_controller.rb:1:in `<top (required)>'
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 13:10:01 +0530
+  [1m[35m (13.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TodosController#index as HTML
+Started POST "/api/v1/todos" for ::1 at 2019-11-25 13:10:12 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+SyntaxError (/home/riddhi/Desktop/learnings/backend/app/models/todo.rb:3: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+  validates :title, presence :true
+                             ^):
+  
+app/models/todo.rb:3: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+app/models/todo.rb:3: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+Completed 401 Unauthorized in 39567ms (Views: 0.9ms | ActiveRecord: 0.0ms | Allocations: 166952)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 13:13:01 +0530
+  [1m[35m (4.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1207ms (Views: 1.0ms | ActiveRecord: 5.3ms | Allocations: 7913)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 13:13:03 +0530
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 13:16:43 +0530
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 17807ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 9878)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 13:17:01 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 204)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 13:17:37 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1196ms (Views: 0.5ms | ActiveRecord: 0.9ms | Allocations: 1094)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 13:17:38 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 105437ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 7048)
+
+
+Completed 401 Unauthorized in 383019ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 37906)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 13:19:46 +0530
+  [1m[35m (5.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 135469ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 18979)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 13:22:02 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 1.0ms | ActiveRecord: 0.0ms | Allocations: 205)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 13:22:42 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1322ms (Views: 1.0ms | ActiveRecord: 5.1ms | Allocations: 6037)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 13:22:44 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 43ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 6197)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 13:22:44 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 158)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 13:23:27 +0530
+  [1m[35m (5.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1213ms (Views: 0.5ms | ActiveRecord: 5.0ms | Allocations: 7917)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 13:23:29 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 4981161ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 30138)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 14:46:30 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 1.0ms | ActiveRecord: 0.0ms | Allocations: 204)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 14:49:19 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1211ms (Views: 0.5ms | ActiveRecord: 0.7ms | Allocations: 1086)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 14:49:20 +0530
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 14:51:02 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 14:51:42 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 14:51:53 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 12848ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 6240)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 14:52:06 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 290)
+
+
+Completed 401 Unauthorized in 39947ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 15845)
+
+
+Completed 401 Unauthorized in 82713ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 24237)
+
+
+Completed 401 Unauthorized in 186337ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 34496)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 14:56:38 +0530
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1261ms (Views: 0.7ms | ActiveRecord: 3.6ms | Allocations: 7916)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 14:56:40 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 14:56:40 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 4ms (Views: 0.9ms | ActiveRecord: 0.0ms | Allocations: 323)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 14:57:53 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1226ms (Views: 0.7ms | ActiveRecord: 3.2ms | Allocations: 6307)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 14:57:54 +0530
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 15:00:05 +0530
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 124398ms (Views: 0.9ms | ActiveRecord: 0.0ms | Allocations: 10709)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 15:02:10 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 325)
+
+
+Completed 401 Unauthorized in 262133ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 27994)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 15:03:01 +0530
+  [1m[35m (7.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1313ms (Views: 0.9ms | ActiveRecord: 4.6ms | Allocations: 7916)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 15:03:03 +0530
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 15:22:49 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 86485ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 6457)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 15:24:16 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 0.9ms | ActiveRecord: 0.0ms | Allocations: 205)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 15:33:52 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 1165ms (Views: 0.6ms | ActiveRecord: 0.9ms | Allocations: 720)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 15:34:11 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1167ms (Views: 0.5ms | ActiveRecord: 0.6ms | Allocations: 1084)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 15:34:12 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 275759ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 8599)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 15:38:48 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 287)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 15:39:16 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1190ms (Views: 0.9ms | ActiveRecord: 0.7ms | Allocations: 1077)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 15:39:18 +0530
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 15:39:43 +0530
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 15:40:12 +0530
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 87619ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 6515)
+
+
+Completed 401 Unauthorized in 119779ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 14861)
+
+
+Completed 401 Unauthorized in 146760ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 24796)
+
+
+Completed 401 Unauthorized in 2326076ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 77944)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 15:44:47 +0530
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 404 Not Found in 1230ms (Views: 0.6ms | ActiveRecord: 4.0ms | Allocations: 7370)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 15:44:55 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1168ms (Views: 0.7ms | ActiveRecord: 0.6ms | Allocations: 1261)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 15:44:57 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 54340ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 16877)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 15:45:51 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 332)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 15:51:06 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1182ms (Views: 0.6ms | ActiveRecord: 4.5ms | Allocations: 6308)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 15:51:07 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 213941ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 276634)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 15:55:32 +0530
+  [1m[35m (3.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1205ms (Views: 0.7ms | ActiveRecord: 4.2ms | Allocations: 7916)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 15:55:33 +0530
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 16:08:30 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 16:09:35 +0530
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 16:10:30 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 16:10:53 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 20676ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 10490)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 16:11:14 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 332)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 16:18:43 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1170ms (Views: 0.6ms | ActiveRecord: 1.1ms | Allocations: 1090)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 16:18:44 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 118285ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 8825)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 16:20:42 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 287)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 16:25:08 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1185ms (Views: 0.5ms | ActiveRecord: 0.6ms | Allocations: 1066)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 16:25:10 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 131582ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 7231)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 16:27:21 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 288)
+
+
+Completed 401 Unauthorized in 1080174ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 50282)
+
+
+Completed 401 Unauthorized in 1139078ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 59312)
+
+
+Completed 401 Unauthorized in 1208667ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 68375)
+
+
+Completed 401 Unauthorized in 1990277ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 86372)
+
+
+Started POST "/signin" for ::1 at 2019-11-25 16:28:57 +0530
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1269ms (Views: 0.7ms | ActiveRecord: 4.0ms | Allocations: 7919)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 16:28:58 +0530
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 16:31:02 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Started GET "/api/v1/todos" for ::1 at 2019-11-25 16:32:15 +0530
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 29481ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 10516)
+
+
+Started POST "/refresh" for ::1 at 2019-11-25 16:32:45 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 205)
+
+
+Completed 401 Unauthorized in 2786183ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 34212)
+
+
+Completed 401 Unauthorized in 2911665ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 50349)
+
+
+Started POST "/signin" for ::1 at 2019-11-26 11:02:13 +0530
+  [1m[35m (42.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (26.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:3:in `create'
+Completed 200 OK in 1392ms (Views: 1.1ms | ActiveRecord: 29.8ms | Allocations: 7918)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-26 11:02:16 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 401 Unauthorized in 1047014ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 77742)
+
+
+Started POST "/refresh" for ::1 at 2019-11-26 11:19:43 +0530
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 3ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 332)
+
+
+Started POST "/signin" for ::1 at 2019-11-26 11:29:31 +0530
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:5:in `create'
+Completed 200 OK in 1259ms (Views: 1.1ms | ActiveRecord: 3.9ms | Allocations: 7943)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-26 11:29:33 +0530
+Processing by Api::V1::TodosController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ (pry):20:in `index'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:14:in `index'
+Completed 401 Unauthorized in 4545231ms (Views: 0.5ms | ActiveRecord: 1.1ms | Allocations: 715162)
+
+
+Started POST "/refresh" for ::1 at 2019-11-26 12:45:18 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RefreshController#create as HTML
+  Parameters: {"refresh"=>{}}
+Completed 401 Unauthorized in 24ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 602)
+
+
+Started POST "/signin" for ::1 at 2019-11-26 12:45:52 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:5:in `create'
+Completed 200 OK in 1217ms (Views: 0.9ms | ActiveRecord: 3.4ms | Allocations: 6364)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-26 12:45:54 +0530
+Processing by Api::V1::TodosController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 500 Internal Server Error in 43902ms (ActiveRecord: 0.6ms | Allocations: 15999)
+
+
+  
+SyntaxError (/home/riddhi/Desktop/learnings/backend/app/models/todo.rb:3: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+  validates :title, presence :true
+                             ^):
+  
+app/models/todo.rb:3: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+app/models/todo.rb:3: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+app/controllers/api/v1/todos_controller.rb:10:in `index'
+Started POST "/signin" for ::1 at 2019-11-26 12:48:49 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:5:in `create'
+Completed 200 OK in 1205ms (Views: 0.9ms | ActiveRecord: 4.7ms | Allocations: 6350)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-26 12:48:50 +0530
+Processing by Api::V1::TodosController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mTodo Load (15.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/controllers/api/v1/todos_controller.rb:12:in `index'
+Completed 200 OK in 3315ms (Views: 17.6ms | ActiveRecord: 17.0ms | Allocations: 10161)
+
+
+Started POST "/signin" for ::1 at 2019-11-26 12:51:58 +0530
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:5:in `create'
+Completed 200 OK in 1205ms (Views: 1.6ms | ActiveRecord: 0.6ms | Allocations: 1101)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-26 12:51:59 +0530
+Processing by Api::V1::TodosController#index as HTML
+Started POST "/api/v1/todos" for ::1 at 2019-11-26 12:52:06 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#create as HTML
+  Parameters: {"todo"=>{"title"=>"reading"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[36mTodo Create (29.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "reading"], ["user_id", 4], ["created_at", "2019-11-26 07:22:21.126399"], ["updated_at", "2019-11-26 07:22:21.126399"]]
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[35m (83.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+Completed 500 Internal Server Error in 15110ms (ActiveRecord: 115.6ms | Allocations: 52485)
+
+
+  
+NoMethodError (undefined method `todo_url' for #<Api::V1::TodosController:0x00007fd0dc8f7000>):
+  
+app/controllers/api/v1/todos_controller.rb:25:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/controllers/api/v1/todos_controller.rb:12:in `index'
+Completed 200 OK in 194264ms (Views: 8.6ms | ActiveRecord: 1.0ms | Allocations: 309315)
+
+
+Started POST "/signin" for ::1 at 2019-11-26 13:03:29 +0530
+  [1m[35m (4.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "signin"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:5:in `create'
+Completed 200 OK in 1261ms (Views: 1.2ms | ActiveRecord: 6.1ms | Allocations: 7944)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-26 13:03:31 +0530
+Processing by Api::V1::TodosController#index as HTML
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/controllers/api/v1/todos_controller.rb:12:in `index'
+Completed 200 OK in 108ms (Views: 55.0ms | ActiveRecord: 5.0ms | Allocations: 11412)
+
+
+Started POST "/api/v1/todos" for ::1 at 2019-11-26 13:03:37 +0530
+Processing by Api::V1::TodosController#create as HTML
+  Parameters: {"todo"=>{"title"=>"writing"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[36mTodo Create (1.2ms)[0m  [1m[32mINSERT INTO "todos" ("title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "writing"], ["user_id", 4], ["created_at", "2019-11-26 07:33:37.369956"], ["updated_at", "2019-11-26 07:33:37.369956"]]
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[35m (94.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+Completed 201 Created in 127ms (Views: 1.2ms | ActiveRecord: 96.3ms | Allocations: 4720)
+
+
+Started POST "/api/v1/todos" for ::1 at 2019-11-26 13:03:48 +0530
+Processing by Api::V1::TodosController#create as HTML
+  Parameters: {"todo"=>{"title"=>"eating"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[36mTodo Create (1.0ms)[0m  [1m[32mINSERT INTO "todos" ("title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "eating"], ["user_id", 4], ["created_at", "2019-11-26 07:33:48.205318"], ["updated_at", "2019-11-26 07:33:48.205318"]]
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[35m (91.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+Completed 201 Created in 119ms (Views: 1.4ms | ActiveRecord: 92.9ms | Allocations: 4485)
+
+
+Started POST "/api/v1/todos" for ::1 at 2019-11-26 13:03:51 +0530
+Processing by Api::V1::TodosController#create as HTML
+  Parameters: {"todo"=>{"title"=>"drinking"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[36mTodo Create (3.2ms)[0m  [1m[32mINSERT INTO "todos" ("title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "drinking"], ["user_id", 4], ["created_at", "2019-11-26 07:33:51.933579"], ["updated_at", "2019-11-26 07:33:51.933579"]]
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[35m (85.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+Completed 201 Created in 115ms (Views: 1.3ms | ActiveRecord: 88.8ms | Allocations: 4485)
+
+
+Started DELETE "/signin" for ::1 at 2019-11-26 13:03:58 +0530
+Processing by SigninController#destroy as HTML
+Completed 200 OK in 15ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 398)
+
+
+Started POST "/oauth/gauth" for ::1 at 2019-11-26 13:05:19 +0530
+Processing by Oauth::GoogleauthController#create as HTML
+  Parameters: {"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlZThkM2RhZmJmMzEyNjJhYjkzNDdkNjIwMzgzMjE3YWZkOTZjYTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Inl0NEt5LTAxaHFtSllzNG9MNE5wY1EiLCJpYXQiOjE1NzQ3NTM3MTcsImV4cCI6MTU3NDc1NzMxNywianRpIjoiMGFlZTg5YjQ3OGM3ODE4MjFjNDRmYmRjOGYwNTY1OTU5ZWYyODgyZSJ9.ErX9gCeLcmR1eFDUzFwi3ulAe0koBYqOmCvg11Lr-rlf2n29dt3BpfAJVjJe-POVck480fAqXSsuUkka64zKVy2b9FMddJCeDxkzjIqMrav-nrHoHaK6oRA-CDugeF-eaH_HINGZW0AUNwx0_IPlRq_XHDrYSH_H0VU1AsN5Edrm0FAa3-sVIpSY4ou04I4zmmJrEZy8D8r68lwg-JwzTmYu4vuMBpxdLIQ8mVFXOQ2JlWcV2r3cBaqoeERv-qwaJtdfxxOT9JW6nK0rTEwAlnAeytFxdHvIfrbZk5IMIBdxTN9KpLcZu5I5-UNXoc8iFT8UvSmJAGH6OKHrvA7kjQ", "accesstoken"=>"ya29.ImCyB_yjkFeW_FgcAOyo4F3J9iQ6n-JpoX8KmX4xrW-ZtnZ7ONjoRwYDj0Xfo4GqKGzaKKarLnAf11BorvZZziYizvvcu3SjNAz54w-ybczJBPJOnByEAVnCT4zT4RCMlbY", "googleauth"=>{"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlZThkM2RhZmJmMzEyNjJhYjkzNDdkNjIwMzgzMjE3YWZkOTZjYTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Inl0NEt5LTAxaHFtSllzNG9MNE5wY1EiLCJpYXQiOjE1NzQ3NTM3MTcsImV4cCI6MTU3NDc1NzMxNywianRpIjoiMGFlZTg5YjQ3OGM3ODE4MjFjNDRmYmRjOGYwNTY1OTU5ZWYyODgyZSJ9.ErX9gCeLcmR1eFDUzFwi3ulAe0koBYqOmCvg11Lr-rlf2n29dt3BpfAJVjJe-POVck480fAqXSsuUkka64zKVy2b9FMddJCeDxkzjIqMrav-nrHoHaK6oRA-CDugeF-eaH_HINGZW0AUNwx0_IPlRq_XHDrYSH_H0VU1AsN5Edrm0FAa3-sVIpSY4ou04I4zmmJrEZy8D8r68lwg-JwzTmYu4vuMBpxdLIQ8mVFXOQ2JlWcV2r3cBaqoeERv-qwaJtdfxxOT9JW6nK0rTEwAlnAeytFxdHvIfrbZk5IMIBdxTN9KpLcZu5I5-UNXoc8iFT8UvSmJAGH6OKHrvA7kjQ", "accesstoken"=>"ya29.ImCyB_yjkFeW_FgcAOyo4F3J9iQ6n-JpoX8KmX4xrW-ZtnZ7ONjoRwYDj0Xfo4GqKGzaKKarLnAf11BorvZZziYizvvcu3SjNAz54w-ybczJBPJOnByEAVnCT4zT4RCMlbY"}}
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+200
+#<HTTP::Message:0x00007f2d24b37808 @http_header=#<HTTP::Message::Headers:0x00007f2d24b377e0 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x2ad0f7da2120 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=200, @reason_phrase="OK", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Pragma", "no-cache"], ["Date", "Tue, 26 Nov 2019 07:35:21 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x00007f2d24c68ee8>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x00007f2d24b37768 @body="{\n  \"issued_to\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"audience\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"user_id\": \"103346968447678112048\",\n  \"scope\": \"openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile\",\n  \"expires_in\": 3596,\n  \"email\": \"ridds509@gmail.com\",\n  \"verified_email\": true,\n  \"access_type\": \"online\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Success - #<Google::Apis::Oauth2V2::Tokeninfo:0x00007f2d24c68600
+ @access_type="online",
+ @audience=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @email="ridds509@gmail.com",
+ @expires_in=3596,
+ @issued_to=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @scope=
+  "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+ @user_id="103346968447678112048",
+ @verified_email=true>
+
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/oauth/googleauth_controller.rb:11:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/oauth/googleauth_controller.rb:14:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/oauth/googleauth_controller.rb:14:in `create'
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/oauth/googleauth_controller.rb:14:in `create'
+Completed 200 OK in 1779ms (Views: 0.8ms | ActiveRecord: 1.7ms | Allocations: 8744)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-26 13:05:22 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 404 Not Found in 5ms (ActiveRecord: 0.0ms | Allocations: 340)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/application_controller.rb:7:in `current_user'
+app/controllers/api/v1/todos_controller.rb:10:in `index'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+Started DELETE "/signin" for ::1 at 2019-11-26 13:10:30 +0530
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SigninController#destroy as HTML
+Completed 200 OK in 12ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 452)
+
+
+Started POST "/oauth/gauth" for ::1 at 2019-11-26 13:10:51 +0530
+  
+SyntaxError (/home/riddhi/Desktop/learnings/backend/app/controllers/oauth/googleauth_controller.rb:17: syntax error, unexpected tIDENTIFIER, expecting ')'
+        render json: session.login
+        ^~~~~~):
+  
+app/controllers/oauth/googleauth_controller.rb:17: syntax error, unexpected tIDENTIFIER, expecting ')'
+app/controllers/oauth/googleauth_controller.rb:17: syntax error, unexpected tIDENTIFIER, expecting ')'
+Started POST "/oauth/gauth" for ::1 at 2019-11-26 13:11:55 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Oauth::GoogleauthController#create as HTML
+  Parameters: {"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlZThkM2RhZmJmMzEyNjJhYjkzNDdkNjIwMzgzMjE3YWZkOTZjYTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IkFzSTBlMFhvZ2FRTmdpTDN1bmJXZGciLCJpYXQiOjE1NzQ3NTQxMTMsImV4cCI6MTU3NDc1NzcxMywianRpIjoiOTQ5ZmYzYTk2ZDRhNTMwYjU3ZDg1MGYwNmQxNzZmNGJmYzA1NGU2NyJ9.CdCuIT61roLdzDGOizZadhv4hJwu2WB9ze07KeH9iAInlucfkAlGb37M0sxF3EyB3VOY92QvluI7QFpC3UKcXUEiWe2nVPTarzmnfXuRn1QQXooA-8cXoJCX_WzI78aTDvW8Ru12VP6FTHwj0dQuZGItNnV9zafvQkMWEh71aetV4840-HLdllfYybhB2-Iz-q_qeJFYmjXuGNqm1Ihy6O5h2hH-_Lm_qfdxdQiszBsRQ_6RqVjH_k_RjJphptxquH2YlLwSLHThM-pMpxpSYZy7eTH3oLY8X4J2rIesg96dGdaLTyCShyaNGpc6Zf3N55AThy-cerSU9aVk5RG03g", "accesstoken"=>"ya29.ImCyB3rQYgf2ZOqrEC2PxjWbUB4gR4wZwDP_6iifxpY-sxtGNv5dPY7OloDJk6MAOX29Q9VkwZvV9oV45ZnzNDuuW2W_OZjsGbl02Km0ksCtWREyuy_CPD83O14VERzBBew", "googleauth"=>{"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlZThkM2RhZmJmMzEyNjJhYjkzNDdkNjIwMzgzMjE3YWZkOTZjYTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IkFzSTBlMFhvZ2FRTmdpTDN1bmJXZGciLCJpYXQiOjE1NzQ3NTQxMTMsImV4cCI6MTU3NDc1NzcxMywianRpIjoiOTQ5ZmYzYTk2ZDRhNTMwYjU3ZDg1MGYwNmQxNzZmNGJmYzA1NGU2NyJ9.CdCuIT61roLdzDGOizZadhv4hJwu2WB9ze07KeH9iAInlucfkAlGb37M0sxF3EyB3VOY92QvluI7QFpC3UKcXUEiWe2nVPTarzmnfXuRn1QQXooA-8cXoJCX_WzI78aTDvW8Ru12VP6FTHwj0dQuZGItNnV9zafvQkMWEh71aetV4840-HLdllfYybhB2-Iz-q_qeJFYmjXuGNqm1Ihy6O5h2hH-_Lm_qfdxdQiszBsRQ_6RqVjH_k_RjJphptxquH2YlLwSLHThM-pMpxpSYZy7eTH3oLY8X4J2rIesg96dGdaLTyCShyaNGpc6Zf3N55AThy-cerSU9aVk5RG03g", "accesstoken"=>"ya29.ImCyB3rQYgf2ZOqrEC2PxjWbUB4gR4wZwDP_6iifxpY-sxtGNv5dPY7OloDJk6MAOX29Q9VkwZvV9oV45ZnzNDuuW2W_OZjsGbl02Km0ksCtWREyuy_CPD83O14VERzBBew"}}
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+200
+#<HTTP::Message:0x00007f2d246c14e0 @http_header=#<HTTP::Message::Headers:0x00007f2d246c14b8 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x3f9692360f20 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=200, @reason_phrase="OK", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Pragma", "no-cache"], ["Date", "Tue, 26 Nov 2019 07:41:56 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x00007f2d24642cf8>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x00007f2d246c1418 @body="{\n  \"issued_to\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"audience\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"user_id\": \"103346968447678112048\",\n  \"scope\": \"openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile\",\n  \"expires_in\": 3596,\n  \"email\": \"ridds509@gmail.com\",\n  \"verified_email\": true,\n  \"access_type\": \"online\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Success - #<Google::Apis::Oauth2V2::Tokeninfo:0x00007f2d24642410
+ @access_type="online",
+ @audience=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @email="ridds509@gmail.com",
+ @expires_in=3596,
+ @issued_to=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @scope=
+  "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+ @user_id="103346968447678112048",
+ @verified_email=true>
+
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/oauth/googleauth_controller.rb:10:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/oauth/googleauth_controller.rb:13:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/oauth/googleauth_controller.rb:13:in `create'
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/oauth/googleauth_controller.rb:13:in `create'
+Completed 200 OK in 1804ms (Views: 1.3ms | ActiveRecord: 6.1ms | Allocations: 11743)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-26 13:11:57 +0530
+Processing by Api::V1::TodosController#index as HTML
+Completed 404 Not Found in 7ms (ActiveRecord: 0.0ms | Allocations: 384)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/application_controller.rb:7:in `current_user'
+app/controllers/api/v1/todos_controller.rb:10:in `index'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+Started DELETE "/signin" for ::1 at 2019-11-26 13:14:17 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SigninController#destroy as HTML
+Completed 200 OK in 12ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 452)
+
+
+Started POST "/oauth/gauth" for ::1 at 2019-11-26 13:14:30 +0530
+Processing by Oauth::GoogleauthController#create as HTML
+  Parameters: {"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlZThkM2RhZmJmMzEyNjJhYjkzNDdkNjIwMzgzMjE3YWZkOTZjYTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Ik54Nzk5Z3dDRFFDb25HMDJfTk9FYnciLCJpYXQiOjE1NzQ3NTQyNjksImV4cCI6MTU3NDc1Nzg2OSwianRpIjoiYTAwYjZjMDRhMzU5NDg0MjIzYTliZjRjMDc0ZmI3MTFhNDM4ZmQ4MyJ9.Sw14Q4IYwzf8SicVFaXoaaQF-RkRWDbTt9rEWBnyVL6pA0TEiIqR5D6rbcxIpRq0V2w-4x_fyq-__tfETMywuxnoMC-_Sw77j9XAebk_aqQeF0FOc0PygoMIx_9toLvztcx5TIWWLpXjhtv5d3NUPrm9AvVCLm8RpJrrExJrTz7T7vks3-2vReVIeWPAqH95XzJVUC3W2xucixdRZWw2wgbuvIOXZq1NwGhqyJIYHWcE3Bnv3de4j7mWYsgbbPW51ET6OQqhbx3l0wFDsPZel0QYbHngiojRBZrSWtEqOb22dUVIoEEYwJGqhazx-eLgArNP3TlVw4xyt5TOUFnUEg", "accesstoken"=>"ya29.ImCyB-Kuhvk4ipHIE5PUYYAox10KlwMro4cgilStoF18brBQECEkUESRhy7GW2d0OrbGyoN31sFeYEyf6Q2o6huCrs_L5BsHyFcDx5CMrrdvgdmeI1Fo7rIK34RwE8bB7Eo", "googleauth"=>{"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlZThkM2RhZmJmMzEyNjJhYjkzNDdkNjIwMzgzMjE3YWZkOTZjYTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Ik54Nzk5Z3dDRFFDb25HMDJfTk9FYnciLCJpYXQiOjE1NzQ3NTQyNjksImV4cCI6MTU3NDc1Nzg2OSwianRpIjoiYTAwYjZjMDRhMzU5NDg0MjIzYTliZjRjMDc0ZmI3MTFhNDM4ZmQ4MyJ9.Sw14Q4IYwzf8SicVFaXoaaQF-RkRWDbTt9rEWBnyVL6pA0TEiIqR5D6rbcxIpRq0V2w-4x_fyq-__tfETMywuxnoMC-_Sw77j9XAebk_aqQeF0FOc0PygoMIx_9toLvztcx5TIWWLpXjhtv5d3NUPrm9AvVCLm8RpJrrExJrTz7T7vks3-2vReVIeWPAqH95XzJVUC3W2xucixdRZWw2wgbuvIOXZq1NwGhqyJIYHWcE3Bnv3de4j7mWYsgbbPW51ET6OQqhbx3l0wFDsPZel0QYbHngiojRBZrSWtEqOb22dUVIoEEYwJGqhazx-eLgArNP3TlVw4xyt5TOUFnUEg", "accesstoken"=>"ya29.ImCyB-Kuhvk4ipHIE5PUYYAox10KlwMro4cgilStoF18brBQECEkUESRhy7GW2d0OrbGyoN31sFeYEyf6Q2o6huCrs_L5BsHyFcDx5CMrrdvgdmeI1Fo7rIK34RwE8bB7Eo"}}
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+200
+#<HTTP::Message:0x000055a1efb0b558 @http_header=#<HTTP::Message::Headers:0x000055a1efb0b530 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x2ad0f7d85f5c URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=200, @reason_phrase="OK", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Pragma", "no-cache"], ["Date", "Tue, 26 Nov 2019 07:45:20 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x000055a1efa83338>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x000055a1efb0b490 @body="{\n  \"issued_to\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"audience\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"user_id\": \"103346968447678112048\",\n  \"scope\": \"openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile\",\n  \"expires_in\": 3549,\n  \"email\": \"ridds509@gmail.com\",\n  \"verified_email\": true,\n  \"access_type\": \"online\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Success - #<Google::Apis::Oauth2V2::Tokeninfo:0x000055a1efa814c0
+ @access_type="online",
+ @audience=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @email="ridds509@gmail.com",
+ @expires_in=3549,
+ @issued_to=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @scope=
+  "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+ @user_id="103346968447678112048",
+ @verified_email=true>
+
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ (pry):5:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ (pry):9:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ (pry):9:in `create'
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  ↳ (pry):9:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ (pry):13:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ (pry):15:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ (pry):15:in `create'
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  ↳ (pry):15:in `create'
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ (pry):17:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ (pry):17:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ (pry):17:in `create'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/oauth/googleauth_controller.rb:6:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ (pry):19:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ (pry):19:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ (pry):19:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ (pry):23:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ (pry):23:in `create'
+  [1m[36mUser Create (1.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "ridds509@gmail.com"], ["password_digest", "$2a$12$7wNvYkyMol.U28ve.T2Ob.IKHT48SbPmtp/sbOfMOcbDwq4rD3oLW"], ["created_at", "2019-11-26 07:53:20.574896"], ["updated_at", "2019-11-26 07:53:20.574896"]]
+  ↳ (pry):23:in `create'
+  [1m[35m (89.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ (pry):23:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ (pry):24:in `create'
+  [1m[36mUser Destroy (1.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 5]]
+  ↳ (pry):24:in `create'
+  [1m[35m (80.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ (pry):24:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ (pry):25:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ (pry):25:in `create'
+  [1m[36mUser Destroy (4.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 4]]
+  ↳ (pry):25:in `create'
+  [1m[35m (0.7ms)[0m  [1m[31mrollback transaction[0m
+  ↳ (pry):25:in `create'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Destroy (2.6ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 4]]
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Destroy (6.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 4]]
+  [1m[35m (3.9ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."user_id" = ?[0m  [["user_id", 4]]
+  [1m[36mTodo Destroy (1.0ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = ?[0m  [["id", 1]]
+  [1m[36mTodo Destroy (0.6ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = ?[0m  [["id", 2]]
+  [1m[36mTodo Destroy (0.5ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = ?[0m  [["id", 3]]
+  [1m[36mTodo Destroy (0.6ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = ?[0m  [["id", 4]]
+  [1m[36mUser Destroy (0.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 4]]
+  [1m[35m (1395.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+400
+#<HTTP::Message:0x000055a1ef840670 @http_header=#<HTTP::Message::Headers:0x000055a1ef840648 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x2ad0f7c20a68 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=400, @reason_phrase="Bad Request", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Pragma", "no-cache"], ["Date", "Tue, 26 Nov 2019 09:11:48 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x000055a1ef793588>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x000055a1ef840530 @body="{\n  \"error_description\": \"Invalid Value\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Caught error Invalid request
+Error - #<Google::Apis::ClientError: Invalid request status_code: 400 header: #<HTTP::Message::Headers:0x000055a1ef7922a0 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x2ad0f7c20a68 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=400, @reason_phrase="Bad Request", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Pragma", "no-cache"], ["Date", "Tue, 26 Nov 2019 09:11:48 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false> body: "{\n  \"error_description\": \"Invalid Value\"\n}\n">
+
+Completed 500 Internal Server Error in 5238180ms (ActiveRecord: 188.7ms | Allocations: 129635)
+
+
+  
+Google::Apis::ClientError (Invalid request):
+  
+app/controllers/oauth/googleauth_controller.rb:9:in `create'
+Started POST "/oauth/gauth" for ::1 at 2019-11-26 14:44:07 +0530
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Oauth::GoogleauthController#create as HTML
+  Parameters: {"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlZThkM2RhZmJmMzEyNjJhYjkzNDdkNjIwMzgzMjE3YWZkOTZjYTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IjZJNXVtd1JvU2VyZVhNU3RLZUR2ZXciLCJpYXQiOjE1NzQ3NTk2NDUsImV4cCI6MTU3NDc2MzI0NSwianRpIjoiNzRlYzc2NGMxMzRjNmNiNGNlODBhMjEwY2VmMmFkMGE2MWQxMzQzZCJ9.QHVJ3RJT35_5rd7DRF8XmhfrRhhBxCC3t9RdCNSFeHsFBXr1oPIAUqwQC4nY0-s0Uv17tNMHbIB0cLxCkLu86pz6eZw2MBvbZ0oZyRHfAvZhc38lpMXatbJnXEkRlIKZGMeaYRDNs8UQ4L-fb4fArpRYD58hsHjPq_BX-ipW0IwMItLeIU-ZKyLIr2JCxvVBePY1Woe6Rx9JHduHMQaAYMHRXXlfaDXuaf7MUs7HmOmVCIit3Sohew6ilMgW254FBN-5c53M4svpT8LFYopwObk5KpUVncrI0jF7hVsivot0mcM3mYlGUTwzI2RAbVYu6z4n0ifUyUmof5SKxFqXaw", "accesstoken"=>"ya29.ImCyB_B9AySfnHk9AkEdQ0fWdq1ggzO-toMHbU8qFRYAdkg73q3AQYetiCkCOr5uMcN67MD98YhnqRKaMbCfI5JHW9Yly9yaRZ1sbm1yYAjBkqtmexxnUmV2QyZcDnrz4oU", "googleauth"=>{"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlZThkM2RhZmJmMzEyNjJhYjkzNDdkNjIwMzgzMjE3YWZkOTZjYTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IjZJNXVtd1JvU2VyZVhNU3RLZUR2ZXciLCJpYXQiOjE1NzQ3NTk2NDUsImV4cCI6MTU3NDc2MzI0NSwianRpIjoiNzRlYzc2NGMxMzRjNmNiNGNlODBhMjEwY2VmMmFkMGE2MWQxMzQzZCJ9.QHVJ3RJT35_5rd7DRF8XmhfrRhhBxCC3t9RdCNSFeHsFBXr1oPIAUqwQC4nY0-s0Uv17tNMHbIB0cLxCkLu86pz6eZw2MBvbZ0oZyRHfAvZhc38lpMXatbJnXEkRlIKZGMeaYRDNs8UQ4L-fb4fArpRYD58hsHjPq_BX-ipW0IwMItLeIU-ZKyLIr2JCxvVBePY1Woe6Rx9JHduHMQaAYMHRXXlfaDXuaf7MUs7HmOmVCIit3Sohew6ilMgW254FBN-5c53M4svpT8LFYopwObk5KpUVncrI0jF7hVsivot0mcM3mYlGUTwzI2RAbVYu6z4n0ifUyUmof5SKxFqXaw", "accesstoken"=>"ya29.ImCyB_B9AySfnHk9AkEdQ0fWdq1ggzO-toMHbU8qFRYAdkg73q3AQYetiCkCOr5uMcN67MD98YhnqRKaMbCfI5JHW9Yly9yaRZ1sbm1yYAjBkqtmexxnUmV2QyZcDnrz4oU"}}
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+200
+#<HTTP::Message:0x00007f19bc7b06b0 @http_header=#<HTTP::Message::Headers:0x00007f19bc7b0688 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x3f8cde3d8b14 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=200, @reason_phrase="OK", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Pragma", "no-cache"], ["Date", "Tue, 26 Nov 2019 09:14:34 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x00007f19bc74f108>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x00007f19bc7b0610 @body="{\n  \"issued_to\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"audience\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"user_id\": \"103346968447678112048\",\n  \"scope\": \"openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile\",\n  \"expires_in\": 3570,\n  \"email\": \"ridds509@gmail.com\",\n  \"verified_email\": true,\n  \"access_type\": \"online\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Success - #<Google::Apis::Oauth2V2::Tokeninfo:0x00007f19bc74e6e0
+ @access_type="online",
+ @audience=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @email="ridds509@gmail.com",
+ @expires_in=3570,
+ @issued_to=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @scope=
+  "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+ @user_id="103346968447678112048",
+ @verified_email=true>
+
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/oauth/googleauth_controller.rb:11:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/oauth/googleauth_controller.rb:14:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/oauth/googleauth_controller.rb:14:in `create'
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "ridds509@gmail.com"], ["password_digest", "$2a$12$tA3A1JrkxJz2fBO54ULDNeX7.2oCgVEakhehs4I9CBKZhwfQTMpNu"], ["created_at", "2019-11-26 09:14:36.242343"], ["updated_at", "2019-11-26 09:14:36.242343"]]
+  ↳ app/controllers/oauth/googleauth_controller.rb:14:in `create'
+  [1m[35m (83.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/oauth/googleauth_controller.rb:14:in `create'
+Completed 200 OK in 28106ms (Views: 1.4ms | ActiveRecord: 88.7ms | Allocations: 32499)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-26 14:44:36 +0530
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::TodosController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  [1m[36mTodo Load (0.7ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/todos_controller.rb:12:in `index'
+Completed 200 OK in 93ms (Views: 18.0ms | ActiveRecord: 5.0ms | Allocations: 12419)
+
+
+Started POST "/api/v1/todos" for ::1 at 2019-11-26 14:44:48 +0530
+Processing by Api::V1::TodosController#create as HTML
+  Parameters: {"todo"=>{"title"=>"reading"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[36mTodo Create (1.2ms)[0m  [1m[32mINSERT INTO "todos" ("title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "reading"], ["user_id", 6], ["created_at", "2019-11-26 09:14:48.945664"], ["updated_at", "2019-11-26 09:14:48.945664"]]
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[35m (82.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+Completed 201 Created in 159ms (Views: 1.8ms | ActiveRecord: 85.5ms | Allocations: 11608)
+
+
+Started POST "/api/v1/todos" for ::1 at 2019-11-26 14:44:51 +0530
+Processing by Api::V1::TodosController#create as HTML
+  Parameters: {"todo"=>{"title"=>"writing"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[36mTodo Create (1.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "writing"], ["user_id", 6], ["created_at", "2019-11-26 09:14:51.932509"], ["updated_at", "2019-11-26 09:14:51.932509"]]
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[35m (81.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+Completed 201 Created in 112ms (Views: 1.2ms | ActiveRecord: 83.3ms | Allocations: 4485)
+
+
+Started POST "/api/v1/todos" for ::1 at 2019-11-26 14:44:58 +0530
+Processing by Api::V1::TodosController#create as HTML
+  Parameters: {"todo"=>{"title"=>"typing"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[36mTodo Create (2.0ms)[0m  [1m[32mINSERT INTO "todos" ("title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "typing"], ["user_id", 6], ["created_at", "2019-11-26 09:14:58.429343"], ["updated_at", "2019-11-26 09:14:58.429343"]]
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[35m (87.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+Completed 201 Created in 132ms (Views: 1.2ms | ActiveRecord: 90.3ms | Allocations: 4487)
+
+
+Started DELETE "/signin" for ::1 at 2019-11-26 14:45:00 +0530
+Processing by SigninController#destroy as HTML
+Completed 200 OK in 19ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 432)
+
+
+Started POST "/oauth/gauth" for ::1 at 2019-11-26 14:45:13 +0530
+Processing by Oauth::GoogleauthController#create as HTML
+  Parameters: {"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlZThkM2RhZmJmMzEyNjJhYjkzNDdkNjIwMzgzMjE3YWZkOTZjYTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Ik8xMFVPc2lhM1BQQ0trOWF3Y2JwN1EiLCJpYXQiOjE1NzQ3NTk3MTEsImV4cCI6MTU3NDc2MzMxMSwianRpIjoiNjEzMzkyYjNmMDRiZjZhYjk0NTI2NDhmODc0MzcyMTNmZDZmODdmOCJ9.XSWwPhV_KvptkM9EgQZgNjhQmiJq5N616Ofn63wlEERAUdByR0rs27RQc-1ZdSSUkOyWNScvzYQbO9YUSzfvUvrCZxR5-SRthW5y3EAR3aUd1ESyyRptSAqk1Np34aGL6ALeDnDJQ7odkrZpdmxJYZUA28CmTFUn3oTXl_EYJHLQC28C7j0KJp0Myz65lZL1LYueB1RlM9FPej1efS0SUg0g4Ac4McuSmjRMN9ns1cDSbyT2MroXgeSkdDjYduTa-P6b68cQOjotIGiCH95P-FbOodjH3dpqotvsOCOfmAuJ2goarJgjyKIu49L5LKiqEBv5e_TlWV7TtxlhqY2JEQ", "accesstoken"=>"ya29.ImCyB8HywSCfRAGGaUTP2gGhTemguphyUcRdZbycicM0ONEb35DLxb6KiytSg1LMBDii56G6ax_gaSMQGMqCsIP4XOpHru5h3NYvgrRKsTVZX6zTN0n2d70tgfWowk7Iz4s", "googleauth"=>{"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlZThkM2RhZmJmMzEyNjJhYjkzNDdkNjIwMzgzMjE3YWZkOTZjYTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Ik8xMFVPc2lhM1BQQ0trOWF3Y2JwN1EiLCJpYXQiOjE1NzQ3NTk3MTEsImV4cCI6MTU3NDc2MzMxMSwianRpIjoiNjEzMzkyYjNmMDRiZjZhYjk0NTI2NDhmODc0MzcyMTNmZDZmODdmOCJ9.XSWwPhV_KvptkM9EgQZgNjhQmiJq5N616Ofn63wlEERAUdByR0rs27RQc-1ZdSSUkOyWNScvzYQbO9YUSzfvUvrCZxR5-SRthW5y3EAR3aUd1ESyyRptSAqk1Np34aGL6ALeDnDJQ7odkrZpdmxJYZUA28CmTFUn3oTXl_EYJHLQC28C7j0KJp0Myz65lZL1LYueB1RlM9FPej1efS0SUg0g4Ac4McuSmjRMN9ns1cDSbyT2MroXgeSkdDjYduTa-P6b68cQOjotIGiCH95P-FbOodjH3dpqotvsOCOfmAuJ2goarJgjyKIu49L5LKiqEBv5e_TlWV7TtxlhqY2JEQ", "accesstoken"=>"ya29.ImCyB8HywSCfRAGGaUTP2gGhTemguphyUcRdZbycicM0ONEb35DLxb6KiytSg1LMBDii56G6ax_gaSMQGMqCsIP4XOpHru5h3NYvgrRKsTVZX6zTN0n2d70tgfWowk7Iz4s"}}
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+200
+#<HTTP::Message:0x00007f19bcca8708 @http_header=#<HTTP::Message::Headers:0x00007f19bcca86e0 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x3f8cde654834 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=200, @reason_phrase="OK", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Date", "Tue, 26 Nov 2019 09:15:13 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Pragma", "no-cache"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x00007f19bcc17fa0>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x00007f19bcca8640 @body="{\n  \"issued_to\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"audience\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"user_id\": \"103346968447678112048\",\n  \"scope\": \"openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile\",\n  \"expires_in\": 3598,\n  \"email\": \"ridds509@gmail.com\",\n  \"verified_email\": true,\n  \"access_type\": \"online\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Success - #<Google::Apis::Oauth2V2::Tokeninfo:0x00007f19bcc17190
+ @access_type="online",
+ @audience=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @email="ridds509@gmail.com",
+ @expires_in=3598,
+ @issued_to=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @scope=
+  "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+ @user_id="103346968447678112048",
+ @verified_email=true>
+
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/oauth/googleauth_controller.rb:10:in `create'
+Completed 200 OK in 568ms (Views: 2.3ms | ActiveRecord: 0.7ms | Allocations: 3633)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-26 14:45:13 +0530
+Processing by Api::V1::TodosController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/todos_controller.rb:12:in `index'
+Completed 200 OK in 23ms (Views: 12.3ms | ActiveRecord: 1.2ms | Allocations: 2072)
+
+
+Started DELETE "/signin" for ::1 at 2019-11-26 14:45:17 +0530
+Processing by SigninController#destroy as HTML
+Completed 200 OK in 13ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 396)
+
+
+Started POST "/signup" for ::1 at 2019-11-26 14:45:50 +0530
+Processing by SignupController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "signup"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :signup[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+Completed 422 Unprocessable Entity in 1184ms (Views: 0.6ms | ActiveRecord: 1.1ms | Allocations: 4664)
+
+
+Started POST "/signup" for ::1 at 2019-11-26 14:45:56 +0530
+Processing by SignupController#create as HTML
+  Parameters: {"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "signup"=>{"email"=>"ridds119@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :signup[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds119@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "ridds119@gmail.com"], ["password_digest", "$2a$12$5T5GNXaR0bVrpWZ5EjW.bu97XM/LZK1.jLdgPOuKB4XR8dDl0.iEW"], ["created_at", "2019-11-26 09:15:57.470626"], ["updated_at", "2019-11-26 09:15:57.470626"]]
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+  [1m[35m (93.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/signup_controller.rb:4:in `create'
+Completed 200 OK in 1316ms (Views: 1.9ms | ActiveRecord: 95.5ms | Allocations: 5158)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-26 14:45:57 +0530
+Processing by Api::V1::TodosController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."user_id" = ?[0m  [["user_id", 7]]
+  ↳ app/controllers/api/v1/todos_controller.rb:12:in `index'
+Completed 200 OK in 21ms (Views: 10.6ms | ActiveRecord: 1.2ms | Allocations: 1628)
+
+
+Started POST "/api/v1/todos" for ::1 at 2019-11-26 14:46:03 +0530
+Processing by Api::V1::TodosController#create as HTML
+  Parameters: {"todo"=>{"title"=>"nothing"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[36mTodo Create (1.3ms)[0m  [1m[32mINSERT INTO "todos" ("title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "nothing"], ["user_id", 7], ["created_at", "2019-11-26 09:16:03.779981"], ["updated_at", "2019-11-26 09:16:03.779981"]]
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[35m (84.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+Completed 201 Created in 121ms (Views: 1.0ms | ActiveRecord: 86.7ms | Allocations: 4467)
+
+
+Started POST "/api/v1/todos" for ::1 at 2019-11-26 14:46:06 +0530
+Processing by Api::V1::TodosController#create as HTML
+  Parameters: {"todo"=>{"title"=>"sleeping"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[36mTodo Create (1.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "sleeping"], ["user_id", 7], ["created_at", "2019-11-26 09:16:06.871307"], ["updated_at", "2019-11-26 09:16:06.871307"]]
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+  [1m[35m (86.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/todos_controller.rb:24:in `create'
+Completed 201 Created in 134ms (Views: 1.5ms | ActiveRecord: 88.2ms | Allocations: 4478)
+
+
+Started DELETE "/signin" for ::1 at 2019-11-26 14:46:08 +0530
+Processing by SigninController#destroy as HTML
+Completed 200 OK in 17ms (Views: 1.0ms | ActiveRecord: 0.0ms | Allocations: 396)
+
+
+Started POST "/oauth/gauth" for ::1 at 2019-11-26 14:46:19 +0530
+Processing by Oauth::GoogleauthController#create as HTML
+  Parameters: {"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlZThkM2RhZmJmMzEyNjJhYjkzNDdkNjIwMzgzMjE3YWZkOTZjYTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Ik5Cb3JfQlZ4dWswWkQxcUlqc1JJYUEiLCJpYXQiOjE1NzQ3NTk3NzcsImV4cCI6MTU3NDc2MzM3NywianRpIjoiZTQ3NTE4ZWMwOTRkNmYzM2U5NGJiMTg4MWY2NDRhM2ViZWZlZDI2NSJ9.RxYMJZV4ylH2zi6NVh48AxnrVDAR0bN9pUL1R_Yt5qjPiwAtxF_7j3jnx6Ok2wL9AhVp3fVpX612_esyPGei87RN7kKVOEaBxsHE5NNDpoUo9sx7jB_1Lr9Sf1B1KkKqoyNe6ShoVS5aQTR3ApN8mxRQi_78QTZVBtGafABToeDfUSmXO4ym27OTaRYVPnudvsE2f3nRmxkZKVNfUbjWFiBbfV8s7tswBeQAJEf_mYn8uHkgi2vnUzOAIZjSMBSP5LhwI9SN2kL_QEXrRUmuc2hi8RFK-zopBC3M2x7pDzRNqrxEFEAKJ4mnKRwc-IgAUeilXNL6948_sWBpaahI6A", "accesstoken"=>"ya29.ImCyB0wl8Cjwq0sdXV66AsAsPIhcScKITvlgX_s-8JQRpejBlc3qPW8xX5ScZCMyhzVP5_8DO-mFxCIWnqhPjzI9U0K38i32OkR1LBhs9WvusWW1UJSiJqGThBGq3acu-DQ", "googleauth"=>{"idtoken"=>"eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlZThkM2RhZmJmMzEyNjJhYjkzNDdkNjIwMzgzMjE3YWZkOTZjYTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzczNzE4Mzg5NDY5LW10Mzc0bDl0OWw1c21kNmQ0dHNtdXZ1OWZlamdyOGozLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMzQ2OTY4NDQ3Njc4MTEyMDQ4IiwiZW1haWwiOiJyaWRkczUwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Ik5Cb3JfQlZ4dWswWkQxcUlqc1JJYUEiLCJpYXQiOjE1NzQ3NTk3NzcsImV4cCI6MTU3NDc2MzM3NywianRpIjoiZTQ3NTE4ZWMwOTRkNmYzM2U5NGJiMTg4MWY2NDRhM2ViZWZlZDI2NSJ9.RxYMJZV4ylH2zi6NVh48AxnrVDAR0bN9pUL1R_Yt5qjPiwAtxF_7j3jnx6Ok2wL9AhVp3fVpX612_esyPGei87RN7kKVOEaBxsHE5NNDpoUo9sx7jB_1Lr9Sf1B1KkKqoyNe6ShoVS5aQTR3ApN8mxRQi_78QTZVBtGafABToeDfUSmXO4ym27OTaRYVPnudvsE2f3nRmxkZKVNfUbjWFiBbfV8s7tswBeQAJEf_mYn8uHkgi2vnUzOAIZjSMBSP5LhwI9SN2kL_QEXrRUmuc2hi8RFK-zopBC3M2x7pDzRNqrxEFEAKJ4mnKRwc-IgAUeilXNL6948_sWBpaahI6A", "accesstoken"=>"ya29.ImCyB0wl8Cjwq0sdXV66AsAsPIhcScKITvlgX_s-8JQRpejBlc3qPW8xX5ScZCMyhzVP5_8DO-mFxCIWnqhPjzI9U0K38i32OkR1LBhs9WvusWW1UJSiJqGThBGq3acu-DQ"}}
+Sending HTTP post https://www.googleapis.com/oauth2/v2/tokeninfo?
+200
+#<HTTP::Message:0x00007f19bc3bc4f0 @http_header=#<HTTP::Message::Headers:0x00007f19bc3bc4c8 @http_version="1.1", @body_size=0, @chunked=false, @request_method="POST", @request_uri=#<Addressable::URI:0x3f8cde1de804 URI:https://www.googleapis.com/oauth2/v2/tokeninfo?>, @request_query=nil, @request_absolute_uri=nil, @status_code=200, @reason_phrase="OK", @body_type=nil, @body_charset=nil, @body_date=nil, @body_encoding=#<Encoding:UTF-8>, @is_request=false, @header_item=[["Pragma", "no-cache"], ["Date", "Tue, 26 Nov 2019 09:16:19 GMT"], ["Cache-Control", "no-cache, no-store, max-age=0, must-revalidate"], ["Expires", "Mon, 01 Jan 1990 00:00:00 GMT"], ["Content-Type", "application/json; charset=UTF-8"], ["Vary", "Origin"], ["Vary", "X-Origin"], ["Vary", "Referer"], ["Content-Encoding", "gzip"], ["Server", "ESF"], ["X-XSS-Protection", "0"], ["X-Frame-Options", "SAMEORIGIN"], ["X-Content-Type-Options", "nosniff"], ["Alt-Svc", "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000"], ["Transfer-Encoding", "chunked"]], @dumped=false>, @peer_cert=#<OpenSSL::X509::Certificate: subject=#<OpenSSL::X509::Name CN=*.googleapis.com,O=Google LLC,L=Mountain View,ST=California,C=US>, issuer=#<OpenSSL::X509::Name CN=GTS CA 1O1,O=Google Trust Services,C=US>, serial=#<OpenSSL::BN:0x00007f19bc52c2e0>, not_before=2019-11-05 07:44:24 UTC, not_after=2020-01-28 07:44:24 UTC>, @http_body=#<HTTP::Message::Body:0x00007f19bc3bc450 @body="{\n  \"issued_to\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"audience\": \"373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com\",\n  \"user_id\": \"103346968447678112048\",\n  \"scope\": \"openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile\",\n  \"expires_in\": 3598,\n  \"email\": \"ridds509@gmail.com\",\n  \"verified_email\": true,\n  \"access_type\": \"online\"\n}\n", @size=0, @positions=nil, @chunk_size=nil>, @previous=nil>
+Success - #<Google::Apis::Oauth2V2::Tokeninfo:0x00007f19bc50af78
+ @access_type="online",
+ @audience=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @email="ridds509@gmail.com",
+ @expires_in=3598,
+ @issued_to=
+  "373718389469-mt374l9t9l5smd6d4tsmuvu9fejgr8j3.apps.googleusercontent.com",
+ @scope=
+  "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+ @user_id="103346968447678112048",
+ @verified_email=true>
+
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ridds509@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/oauth/googleauth_controller.rb:10:in `create'
+Completed 200 OK in 581ms (Views: 1.6ms | ActiveRecord: 0.7ms | Allocations: 3734)
+
+
+Started GET "/api/v1/todos" for ::1 at 2019-11-26 14:46:19 +0530
+Processing by Api::V1::TodosController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/todos_controller.rb:12:in `index'
+Completed 200 OK in 38ms (Views: 22.8ms | ActiveRecord: 1.2ms | Allocations: 2060)
+
+
+Started DELETE "/signin" for ::1 at 2019-11-26 14:46:24 +0530
+Processing by SigninController#destroy as HTML
+Completed 200 OK in 12ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 396)
+
+
